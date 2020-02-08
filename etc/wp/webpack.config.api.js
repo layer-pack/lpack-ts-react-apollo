@@ -118,6 +118,10 @@ module.exports = [
 				{
 					test  : /\.json?$/,
 					loader: 'strip-json-comments-loader'
+				},
+				{
+					test: /\.graphql$/i,
+					use : 'raw-loader',
 				}
 			],
 		},

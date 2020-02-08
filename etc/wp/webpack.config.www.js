@@ -60,14 +60,15 @@ module.exports = [
 			hot               : true,
 			inline            : true,
 			//publicPath        : lPack.getHeadRoot() + "/" + (lpackCfg.vars.targetDir || 'dist'),
-			
-			host : 'localhost', // Defaults to `localhost`
-			port : 8080, // Defaults to 8080
-			proxy: [{
-				context: ['/**', '!/sockjs-node/**'],
-				target : 'http://localhost:9701',
-				ws     : true,
-				secure : false                         // proxy websockets
+			disableHostCheck  : true,
+			host              : '127.0.0.1', // Defaults to `localhost`
+			port              : 8080, // Defaults to 8080
+			proxy             : [{
+				context         : ['/**', '!/sockjs-node/**'],
+				disableHostCheck: true,
+				target          : 'http://127.0.0.1:9701',
+				ws              : true,
+				secure          : false                         // proxy websockets
 			}]
 		} || undefined,
 		
@@ -331,6 +332,10 @@ module.exports = [
 					test  : /\.json?$/,
 					loader:
 						'strip-json-comments-loader'
+				},
+				{
+					test: /\.graphql$/i,
+					use : 'raw-loader',
 				}
 			],
 		},

@@ -42,7 +42,6 @@ export function createClient(): ApolloClient<NormalizedCacheObject> {
     credentials: "same-origin",
     uri: GRAPHQL
   });
-console.log('createClient::createClient:45: ', GRAPHQL);
   // If we're in the browser, we'd have received initial state from the
   // server. Restore it, so the client app can continue with the same data.
   if (!__IS_SERVER__) {

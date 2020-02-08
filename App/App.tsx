@@ -13,7 +13,8 @@ import {Global} from "@emotion/core";
 /* Local */
 
 // Components
-import {HackerNews} from "App/ui/comps/hackernews.tsx";
+// import {HackerNews} from "App/ui/comps/hackernews.tsx";
+import Posts from "App/ui/comps/Post";
 
 // Global styles
 // import globalStyles from "App/global/styles";
@@ -31,7 +32,8 @@ const Root: React.FunctionComponent = () => (
         <Helmet>
             <title>ReactQL starter kit - edit me!</title>
         </Helmet>
-        <HackerNews/>
+        {/*<HackerNews/>*/}
+        <Posts/>
     </div>
 );
 

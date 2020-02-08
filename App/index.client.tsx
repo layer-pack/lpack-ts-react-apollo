@@ -6,19 +6,19 @@
 /* NPM */
 
 // Create browser history, for navigation a la single page apps
-import { createBrowserHistory } from "history";
+import {createBrowserHistory} from "history";
 
 // React, our UI engine
 import React from "react";
 
 // HOC for enabling Apollo GraphQL `<Query>` and `<Mutation>`
-import { ApolloProvider } from "react-apollo";
+import {ApolloProvider} from "react-apollo";
 
 // Attach React to the browser DOM
 import ReactDOM from "react-dom";
 
 // Single page app routing
-import { Router } from "react-router-dom";
+import {Router} from "react-router-dom";
 
 /* Local */
 
@@ -26,7 +26,7 @@ import { Router } from "react-router-dom";
 import Root from "App/App.tsx";
 
 // Helper function that creates a new Apollo client per request
-import { createClient } from "App/db/lib/apollo";
+import {createClient} from "App/db/lib/apollo";
 
 // ----------------------------------------------------------------------------
 
@@ -39,12 +39,12 @@ const history = createBrowserHistory();
 // Render
 const root = document.getElementById("root")!;
 
-// console.log(root.innerHTML)
+// console.log(client)
 
 ReactDOM[root.innerHTML ? "hydrate" : "render"](
     <ApolloProvider client={client}>
         <Router history={history}>
-            <Root />
+            <Root/>
         </Router>
     </ApolloProvider>,
     document.getElementById("root")
