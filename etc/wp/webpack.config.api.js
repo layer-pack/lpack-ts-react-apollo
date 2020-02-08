@@ -93,8 +93,7 @@ module.exports = [
 									["@babel/proposal-class-properties", { loose: true }],
 									"@babel/proposal-object-rest-spread",
 									"@babel/plugin-syntax-dynamic-import",
-									"react-hot-loader/babel",
-									"emotion"
+									"react-hot-loader/babel"
 								]
 							}
 						}
@@ -137,7 +136,7 @@ module.exports = [
 				
 				// Add global variables
 				new webpack.DefinePlugin({
-					                         __IS_SERVER__    : true,
+					                         __IS_SERVER__: true,
 				                         }),
 				// Add source map support to the server-side bundle
 				new webpack.BannerPlugin({

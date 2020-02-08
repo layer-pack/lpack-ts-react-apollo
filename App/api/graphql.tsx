@@ -18,7 +18,7 @@ let schema, entities = {};
 
 export const name = "Apollo GraphQL service";
 export const priorityLevel = 100;
-export const service = (app) => {
+export const service = (app, httpServer) => {
 
         const server = new ApolloServer({
             ...graphql.schema,
@@ -31,10 +31,12 @@ export const service = (app) => {
                         endpoint: "/graphql"
                     },
                 ],
-            }
+            },
+            subscriptions: {},
         });
 
         server.applyMiddleware({app, path: '/graphql'});
 
+        server.installSubscriptionHandlers(httpServer);
     }
 ;

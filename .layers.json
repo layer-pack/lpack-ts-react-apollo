@@ -71,8 +71,8 @@
       "targetDir": "dist/www",
       "DefinePluginCfg": {
         "__IS_SERVER__": false,
-        "GRAPHQL": "'http://app.localhost:8080/graphql'",
-        "WS_SUBSCRIPTIONS": 0,
+        "GRAPHQL": "'http://localhost:8080/graphql'",
+        "WS_SUBSCRIPTIONS": 1,
         "LOCAL_STORAGE_KEY": "'reactql'"
       },
       "production": true,

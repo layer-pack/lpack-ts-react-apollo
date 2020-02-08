@@ -178,9 +178,9 @@ module.exports = [
 		module: {
 			rules: [
 				...(lpackCfg.vars.devServer && [
-					{
-						test: /\.(j|t)sx?$/i, use: 'source-map-loader', exclude: /react-hot-loader/
-					},
+					//{
+						//test: /\.(j|t)sx?$/i, use: 'source-map-loader', exclude: /react-hot-loader/
+					//},
 					{
 						test   : /\.(j|t)sx?$/i,
 						exclude: isExcluded,
@@ -211,9 +211,6 @@ module.exports = [
 									"@babel/proposal-object-rest-spread",
 									"@babel/plugin-syntax-dynamic-import",
 									"react-hot-loader/babel",
-									"emotion",
-									//...(lpackCfg.vars.devServer && [[require.resolve("react-hot-loader/babel"), {}]]
-									// || []),
 								]
 							}
 						},

@@ -35,7 +35,7 @@ import {Router, StaticRouter} from "react-router";
 /* Local */
 
 // Utility for creating a per-request Apollo client
-import {createClient} from "App/db/lib/apollo";
+import {createClient} from "App/db/apollo";
 
 // Types
 export interface IRouterContext {
@@ -98,7 +98,7 @@ const ctrl = {
         );
 
         // Await GraphQL data coming from the API server
-        await getDataFromTree(components);
+        // await getDataFromTree(components);
 
         // Handle 404 `Not Found`
         if (routerContext.status === 404) {
@@ -115,7 +115,7 @@ const ctrl = {
 
         try {
             // Create response HTML
-            html = renderToString(components);
+            // html = renderToString(components);
             html = "<!doctype html>\n" + renderToString(
                 <Index
                     // css={output.client.main("css")!}

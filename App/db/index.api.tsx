@@ -18,6 +18,12 @@ const graphql     = {
 					...Object.keys(scalars).map(typeId => "scalar " + typeId + '\n'),
 					...Object.keys(schemas).map(typeId => schemas[typeId]),
 					`
+					type Query {
+  						_empty: Boolean ## hop
+					}
+					type Mutation {
+  						_empty: Boolean ## hop
+					}
 				      schema {
 				        query: Query
 				        mutation: Mutation
