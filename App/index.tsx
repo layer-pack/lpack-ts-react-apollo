@@ -24,18 +24,15 @@ import {hot} from 'react-hot-loader/root'
 import "regenerator-runtime/runtime";
 import Index from "./index.html.tsx";
 
-// The `Context` type for the Koa HTTP server
-import {Context} from "koa";
-
+// Create browser history, for navigation a la single page apps
+import {createBrowserHistory} from "history";
 // Apollo GraphQL
 import {ApolloProvider, getDataFromTree} from "react-apollo";
 
 // React SSR routers
-import {StaticRouter} from "react-router";
+import {Router, StaticRouter} from "react-router";
 
 /* Local */
-
-// Root component
 
 // Utility for creating a per-request Apollo client
 import {createClient} from "App/db/lib/apollo";
@@ -46,28 +43,36 @@ export interface IRouterContext {
     url?: string;
 }
 
-// Class for handling Webpack stats output
-// import Output from "@/lib/output";
-//
-// Every byte sent back to the client is React; this is our main template
-// import Html from "@/views/ssr";
 const ctrl = {
     renderTo(node, initialState = {}) {
         const isDev = process.env.NODE_ENV !== 'production',
             App = require('App/App.tsx').default,
             HMRApp = isDev ? hot(App) : App;
 
-        ReactDom.render(
-            <HMRApp/>
-            , node);
+        const client = createClient();
+        const history = createBrowserHistory();
+
+        ReactDom[node.innerHTML ? "hydrate" : "render"](
+            <ApolloProvider client={client}>
+                <Router history={history}>
+                    <HMRApp/>
+                </Router>
+            </ApolloProvider>,
+            node
+        );
 
         if (process.env.NODE_ENV !== 'production' && module.hot) {
-            module.hot.accept('App/App.js', m => {
+            module.hot.accept('App/App.tsx', m => {
                 let NextApp = hot(require('App/App.tsx').default);
 
-                ReactDom.render(
-                    <NextApp/>
-                    , node);
+                ReactDom[node.innerHTML ? "hydrate" : "render"](
+                    <ApolloProvider client={client}>
+                        <Router history={history}>
+                            <NextApp/>
+                        </Router>
+                    </ApolloProvider>,
+                    node
+                );
             })
         }
     },
@@ -105,13 +110,12 @@ const ctrl = {
             // ctx.body = "Not found";
             // html = "<!doctype html>\n" + renderToString(<Index ssrErrors={`<pre>${e}\n${e.stack}</pre>`}/>);
             //
-            return cb(404, html);
+            return cb(404, 404);
         }
 
-        // Create response HTML
-        html = renderToString(components);
         try {
-            // content = renderToString(<App/>);
+            // Create response HTML
+            html = renderToString(components);
             html = "<!doctype html>\n" + renderToString(
                 <Index
                     // css={output.client.main("css")!}
