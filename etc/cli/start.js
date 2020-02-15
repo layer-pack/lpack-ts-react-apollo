@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
  *   The MIT License (MIT)
  *   Copyright (c) 2019. Wise Wild Web
@@ -24,7 +25,6 @@
  *   @contact : n8tz.js@gmail.com
  */
 
-#!/usr/bin/env node
 'use strict';
 
 const program = require('commander'),

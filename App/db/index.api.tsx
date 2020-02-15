@@ -40,10 +40,10 @@ const graphql     = {
 					...Object.keys(schemas).map(typeId => schemas[typeId]),
 					`
 					type Query {
-  						_empty: Boolean ## hop
+  						_byPassEmptyTypeError: Boolean ## hop
 					}
 					type Mutation {
-  						_empty: Boolean ## hop
+  						_byPassEmptyTypeError: Boolean ## hop
 					}
 				      schema {
 				        query: Query
